@@ -26,7 +26,7 @@ class Dijkstra:
         # relax vertices in order of distance from s
         self.pq[self.s] = self.distTo[self.s]
         while len(self.pq.keys()) > 0:
-            (k, weight) = self.pq.popitem()
+            (k, _) = self.pq.popitem()
             for w in self.edges_from[k]:
                 self.relax(k, w)
     
