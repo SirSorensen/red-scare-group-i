@@ -64,7 +64,7 @@ class Graph:
         Note that the edge $st$, if it exists, is an (s,t)-path with $l=2$.
         Thus, if $s->t ∈ E(G)$ then the answer is 1, no matter the colour of $s$ or $t$.
     """
-    def solve_none():
+    def solve_none() -> int:
         ...
 
     """
@@ -72,7 +72,7 @@ class Graph:
         Return `true' if there is a path from $s$ to $t$ that includes at least one vertex from $R$.
         Otherwise, return `false.'
     """
-    def solve_some():
+    def solve_some() -> bool:
         ...
     
     """
@@ -82,7 +82,7 @@ class Graph:
         Return $max{ r(p) : p ∈ P }$.
         If no path from $s$ to $t$ exists, return `-1'.
     """
-    def solve_many():
+    def solve_many() -> int:
         ...
     
     """
@@ -92,7 +92,7 @@ class Graph:
         Return $min{ r(p) : p ∈ P }$.
         If no path from $s$ to $t$ exists, return `-1'.
     """
-    def solve_few():
+    def solve_few() -> int:
         ...
     
     """
@@ -101,7 +101,7 @@ class Graph:
         To be precise, a path $v_1, ..., v_l$ is *alternating* if for each $i ∈ {1, ..., l-1}$, exactly one endpoint of the edge $v_i--v_{i+1}$ is red.
         Otherwise, return `false.'
     """
-    def solve_alternate():
+    def solve_alternate() -> bool:
         ...
     
 
