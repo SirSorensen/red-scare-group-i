@@ -23,3 +23,5 @@
     * Dynamisk programmering
    * Vi behøver kun 1 række cache/memory, længde N
    * Vi skal pre-process og lave en graf med inverted edges.
+
+Adrian confirmed David's idea: We can solve some (not all) general scenarios by using Bellman-Ford (which allows cycles) and finding "shortest path" where edges to red nodes have weight -1 and all other edges have weight 0. It doesn't work for cycles with negative weight, though.
