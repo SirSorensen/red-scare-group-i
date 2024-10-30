@@ -75,7 +75,7 @@ class Graph:
         Return `true' if there is a path from $s$ to $t$ that includes at least one vertex from $R$.
         Otherwise, return `false.'
     """
-    def solve_some() -> bool:
+    def solve_some(self) -> bool:
         ...
     
     """
@@ -85,7 +85,7 @@ class Graph:
         Return $max{ r(p) : p ∈ P }$.
         If no path from $s$ to $t$ exists, return `-1'.
     """
-    def solve_many() -> int:
+    def solve_many(self) -> int:
         ...
     
     """
@@ -108,7 +108,7 @@ class Graph:
         To be precise, a path $v_1, ..., v_l$ is *alternating* if for each $i ∈ {1, ..., l-1}$, exactly one endpoint of the edge $v_i--v_{i+1}$ is red.
         Otherwise, return `false.'
     """
-    def solve_alternate() -> bool:
+    def solve_alternate(self) -> bool:
         ...
     
 
