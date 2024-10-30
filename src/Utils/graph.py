@@ -42,8 +42,8 @@ class Graph:
     def __str__(self) -> str:
         edges_str = ""
         for i in range(self.edge_amount):
-            for dest_node in self.edges[i]:
-                edges_str += f"\n   {i} -> {dest_node}"
+            edges_str += f"\n   {i} -> {self.edges[i]}"
+                
         
         s = f"This graph has {self.node_amount} nodes, {self.edge_amount} edges, and {self.red_amount} red nodes.\n"
         s += f"Node colours (True if red, False if black) :\n   {self.node_colours}\n"
