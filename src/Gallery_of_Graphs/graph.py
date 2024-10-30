@@ -9,6 +9,9 @@
     Note that this definition requires the vertices on a path to be distinct, this is sometimes called a *simple* path.
 """
 
+from Utils.dijkstra import Dijkstra
+
+
 class Graph:
     def __init__(self, input_lines : list[str]):
         # node_amount = |V(G)| = number of nodes
@@ -26,7 +29,7 @@ class Graph:
         node_inputs = input_lines[node_input_start_line:edge_input_start_line]
         self.node_colours = [(s[-1] == '*') for s in node_inputs]
         
-        self.edges = [[] for _ in range(self.edge_amount)]
+        self.edges = [[] for _ in range(self.node_amount)]
         edge_inputs = [s.split() for s in input_lines[edge_input_start_line:]]
         for input in edge_inputs:
             e_s = int(input[0])
@@ -64,7 +67,7 @@ class Graph:
         Note that the edge $st$, if it exists, is an (s,t)-path with $l=2$.
         Thus, if $s->t ∈ E(G)$ then the answer is 1, no matter the colour of $s$ or $t$.
     """
-    def solve_none() -> int:
+    def solve_none(self) -> int:
         ...
 
     """
@@ -92,8 +95,12 @@ class Graph:
         Return $min{ r(p) : p ∈ P }$.
         If no path from $s$ to $t$ exists, return `-1'.
     """
-    def solve_few() -> int:
-        ...
+    def solve_few(self) -> int:
+        dijkstra = Dijkstra(self.start, self.end, self.node_amount, self.edges, self.node_colours)
+        dist = dijkstra.get_dist(self.end)
+        if self.node_colours[self.start]:
+            dist += 1
+        return int(dist)
     
     """
         Alternate:
