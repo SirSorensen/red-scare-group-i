@@ -21,19 +21,22 @@ class Graph:
 
         # start = s = index of starting node
         # end = t = index of ending node
-        self.start, self.end = map(int, input_lines[1].split())
+        self.start, self.end = map(self.node_to_int, input_lines[1].split())
         
-        node_input_start_line = 2
-        edge_input_start_line = 2+self.node_amount
+        # the line of the input file, on which nodes start to be described
+        nodes_begin = 2
+        # the line of the input file, on which edges start to be described
+        edges_begin = nodes_begin+self.node_amount
+        
 
-        node_inputs = input_lines[node_input_start_line:edge_input_start_line]
+        node_inputs = input_lines[nodes_begin:edges_begin]
         self.node_colours = [(s[-1] == '*') for s in node_inputs]
         
         self.edges = [[] for _ in range(self.node_amount)]
-        edge_inputs = [s.split() for s in input_lines[edge_input_start_line:]]
+        edge_inputs = [s.split() for s in input_lines[edges_begin:]]
         for input in edge_inputs:
-            e_s = int(input[0])
-            e_t = int(input[2])
+            e_s = self.node_to_int(input[0])
+            e_t = self.node_to_int(input[2])
             arrow = input[1]
             if arrow == "--":
                 self.edges[e_s].append(e_t)
@@ -100,6 +103,8 @@ class Graph:
         dist = dijkstra.get_dist(self.end)
         if self.node_colours[self.start]:
             dist += 1
+        
+        # print(dijkstra.path_to_str(self.end)) # For printing the path
         return int(dist)
     
     """
@@ -112,5 +117,6 @@ class Graph:
         ...
     
 
-
-    
+    # Helper functions for specific graph-types
+    def node_to_int(slef, node_str) -> int:
+        return int(node_str)
