@@ -1,3 +1,4 @@
+import math
 from Gallery_of_Graphs.graph import Graph
 
 """
@@ -16,3 +17,11 @@ from Gallery_of_Graphs.graph import Graph
 class Grid(Graph):
     def __init__(self, input_lines : list[str]):
         super().__init__(input_lines)
+    
+    def node_to_int(self, s : str) -> tuple[int, int]:
+        # In case side_length has not been init yet
+        if not hasattr(int, 'side_length'):
+            self.side_length = int(math.sqrt(self.node_amount))
+
+        (a, b) = map(int, s.split('_'))
+        return b + a*self.side_length
