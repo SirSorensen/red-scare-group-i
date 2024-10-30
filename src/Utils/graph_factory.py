@@ -16,15 +16,9 @@ def construct_graph(file_name) -> Graph:
  
     # Regex match case has taken inspiration from https://stackoverflow.com/a/72538070
     pattern = re.compile(
-        r"""(?x)
-            (?P<common>common-\d+-\d+) |
-            (?P<grid>grid-\d+-\d+) |
-            (?P<increase>increase-n\d+-\d+) |
-            (?P<ski>ski-\w+) |
-            (?P<wall>wall-\w-\d+) |
-            (?P<word>"rusty-\d+-\d+")
-        """)
-        
+        r"""(?P<grid>grid-\d+-\d+)|(?P<increase>increase-n\d+-\d+)|(?P<ski>ski-\w+)|(?P<wall>wall-\w-\d+)|(?P<word>(?:rusty|common)-\d+-\d+)"""
+    )
+    
     mo = pattern.fullmatch(file_name)
     if mo is not None:
         match mo.lastgroup:
@@ -41,4 +35,6 @@ def construct_graph(file_name) -> Graph:
             case _:
                 return Graph(input_lines)
     else:
+        print("####                   Failed                   ####")
+        return None
         return Graph(input_lines)
