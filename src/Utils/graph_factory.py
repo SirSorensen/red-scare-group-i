@@ -35,6 +35,4 @@ def construct_graph(file_name) -> Graph:
             case _:
                 return Graph(input_lines)
     else:
-        print("####                   Failed                   ####")
-        return None
         return Graph(input_lines)
