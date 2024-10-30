@@ -19,12 +19,15 @@ class Graph:
         # start = s = index of starting node
         # end = t = index of ending node
         self.start, self.end = map(int, input_lines[1].split())
+        
+        node_input_start_line = 2
+        edge_input_start_line = 2+self.node_amount
 
-        node_inputs = input_lines[2:2+self.node_amount]
+        node_inputs = input_lines[node_input_start_line:edge_input_start_line]
         self.node_colours = [(s[-1] == '*') for s in node_inputs]
         
         self.edges = [[] for _ in range(self.edge_amount)]
-        edge_inputs = [s.split() for s in input_lines[3+self.node_amount:]]
+        edge_inputs = [s.split() for s in input_lines[edge_input_start_line:]]
         for input in edge_inputs:
             e_s = int(input[0])
             e_t = int(input[2])
