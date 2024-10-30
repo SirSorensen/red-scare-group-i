@@ -50,3 +50,16 @@ class Dijkstra:
     
     def get_dist(self, v : int) -> float:
         return self.distTo[v]
+    
+    def get_path(self, v : int) -> list[int]:
+        path = [v]
+        while path[-1] != self.s:
+            (source, dest, weight) = self.edgeTo[path[-1]]
+            path.append(source)
+        return path
+    
+    def path_to_str(self, v : int) -> str:
+        path_str = [str(x) for x in self.get_path(v)]
+        path_str.reverse()
+        return ' -> '.join(path_str)
+
