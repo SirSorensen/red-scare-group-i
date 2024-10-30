@@ -19,3 +19,15 @@ from Gallery_of_Graphs.graph import Graph
 class Wall(Graph):
     def __init__(self, input_lines : list[str]):
         super().__init__(input_lines)
+    
+    def solve_none(self) -> bool:
+        return True
+    
+    def solve_alternate(self) -> bool:
+        return False
+    
+    def solve_many(self) -> int:
+        if self.solve_some():
+            return 1
+        else:
+            return -1
