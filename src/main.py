@@ -1,5 +1,4 @@
-
-from Utils.graph import Graph
+from Gallery_of_Graphs.graph import Graph
 
 
 file_name = 'G-ex'

@@ -1,4 +1,4 @@
-from graph import Graph
+from Gallery_of_Graphs.graph import Graph
 
 """
     Each *Increase* graph is generated from a sequence $a_1, ..., a_n$ of unique integers with $0 α_i ≤ 2n$.

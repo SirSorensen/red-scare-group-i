@@ -1,4 +1,4 @@
-from graph import Graph
+from Gallery_of_Graphs.graph import Graph
 
 """
     SkiFree is an ancient computer game by Chris Pirih, part of the Microsoft Entertainment Pack in 1991, and going back to VT100 VAX/VMS terminals, ultimately inspired by Activision's *Skiing* for the Atari 2600 console.

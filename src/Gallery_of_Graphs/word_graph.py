@@ -1,4 +1,4 @@
-from graph import Graph
+from Gallery_of_Graphs.graph import Graph
 
 """
     In the word graphs, each vertex represents a five-letter word of English.

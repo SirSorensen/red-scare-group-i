@@ -1,4 +1,4 @@
-from graph import Graph
+from Gallery_of_Graphs.graph import Graph
 
 """
     The Wall graphs are a family consisting of $N$ overlapping 8-cycles called *bricks$.

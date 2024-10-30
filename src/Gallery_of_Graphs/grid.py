@@ -1,4 +1,4 @@
-from graph import Graph
+from Gallery_of_Graphs.graph import Graph
 
 """
     The Grid graphs consist of $N^2$ vertices that represent integer coordinates $(x,y)$ for $x,y ∈ {0, ..., N-1}$.
