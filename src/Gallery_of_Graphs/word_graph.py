@@ -14,16 +14,21 @@ from Gallery_of_Graphs.graph import Graph
 
 class WordGraph(Graph):
     def __init__(self, input_lines : list[str]):
-        self.node_dict : dict[str, int] = {}
-        self.node_dict_size = 0
+        self.node_ids : dict[str, int] = {}
         super().__init__(input_lines)
     
-    def node_to_int(self, s : str) -> tuple[int, int]:
-        cached = self.node_dict.get(s)
-        if cached is not None:
-            return cached
-        else:
-            to_be_cached = self.node_dict_size
-            self.node_dict[s] = to_be_cached
-            self.node_dict_size += 1
-            return to_be_cached
+    def node_to_id(self, node_str : str):
+        node_id = self.node_ids.get(node_str)
+        if node_id is None:
+            node_id = len(self.node_ids)
+            self.node_ids[node_str] = node_id
+        return node_id
+    
+    def ids_to_nodes(self, node_ids : list[int]):
+        rev_dict = {v:k for (k,v) in self.node_ids.items()}
+        originals = [rev_dict[node_id] for node_id in node_ids]
+        for i in range(len(node_ids)):
+            _id = node_ids[i]
+            if self.node_colours[_id]:
+                originals[i] = f"*{originals[i]}*"
+        return originals
