@@ -5,7 +5,7 @@ sys.path.append('../src')
 from Gallery_of_Graphs.graph import Graph
 from Utils.graph_factory import construct_graph
 
-class TestsInterface(unittest.TestCase):
+class UnitTests(unittest.TestCase):
     def test_example(self):
         ...
 

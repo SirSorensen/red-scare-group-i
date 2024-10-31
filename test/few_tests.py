@@ -1,14 +1,14 @@
 import sys
 import unittest
 
-from tests_interface import TestsInterface
+from tests_superclass import UnitTests
 
 sys.path.append('../src')
 from Gallery_of_Graphs.graph import Graph
 from Utils.graph_factory import construct_graph
 from Utils.dijkstra import Dijkstra
 
-class FewTests(TestsInterface):
+class FewTests(UnitTests):
     def test_example(self):
         self._act_assert('G-ex', 0)
 
