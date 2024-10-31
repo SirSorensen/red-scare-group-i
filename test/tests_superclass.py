@@ -48,4 +48,4 @@ class UnitTests(unittest.TestCase):
         return f"n\n{file_name} gave {actual} but should have given {expected}.\n\nGraph details:\n{g}"
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(argv=['first-arg-is-ignored'], exit=False)

@@ -43,4 +43,4 @@ class ManyTests(UnitTests):
         return g.solve_many()
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(argv=['first-arg-is-ignored'], exit=False)

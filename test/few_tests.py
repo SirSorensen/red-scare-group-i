@@ -58,4 +58,4 @@ class FewTests(UnitTests):
         return '\n'.join([f"    - {distTo[_id]} distance to {node_originals[_id]}" for _id in node_ids])
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(argv=['first-arg-is-ignored'], exit=False)

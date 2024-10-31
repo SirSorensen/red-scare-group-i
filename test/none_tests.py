@@ -43,4 +43,4 @@ class NoneTests(UnitTests):
         return g.solve_none()
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(argv=['first-arg-is-ignored'], exit=False)

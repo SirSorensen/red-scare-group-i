@@ -9,12 +9,15 @@ from Gallery_of_Graphs.wall import Wall
 from Gallery_of_Graphs.word_graph import WordGraph
 from Gallery_of_Graphs.graph import Graph
 
+logging.basicConfig(level=logging.DEBUG)
 
 
 def construct_graph(file_name) -> Graph:
     root = pathlib.Path(__file__).resolve().parent.parent.parent
     path = root / 'data' / f'{file_name}.txt'
     
+    if 'debug' in sys.argv:
+        logging.debug(f"Path: {path}")
     
     with open(path, "r") as file:  
         input_lines = file.read().splitlines()

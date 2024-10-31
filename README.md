@@ -47,3 +47,8 @@ cd test
 python none_tests.py
 ```
 
+To print the graph file name from the data folder add the word `debug` as an argument to the test file.
+
+```sh
+python tests/none_tests.py debug
+```
