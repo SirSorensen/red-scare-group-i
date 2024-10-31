@@ -27,7 +27,4 @@ class Wall(Graph):
         return False
     
     def solve_many(self) -> int:
-        if self.solve_some():
-            return 1
-        else:
-            return -1
+        return (1 if self.solve_some() else -1)

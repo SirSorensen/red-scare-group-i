@@ -18,10 +18,21 @@ class Grid(Graph):
     def __init__(self, input_lines : list[str]):
         super().__init__(input_lines)
     
-    def node_to_int(self, s : str) -> tuple[int, int]:
+    def node_to_id(self, s : str) -> tuple[int, int]:
         # In case side_length has not been init yet
         if not hasattr(int, 'side_length'):
             self.side_length = int(math.sqrt(self.node_amount))
 
         (a, b) = map(int, s.split('_'))
         return b + a*self.side_length
+
+    def ids_to_nodes(self, node_ids : list[int]):
+        originals = []
+        for i in range(len(node_ids)):
+            _id = node_ids[i]
+            y = _id//self.side_length
+            x = _id%self.side_length
+            originals.append(f"{x}_{y}")
+            if self.node_colours[_id]:
+                originals[-1] = f"*{originals[-1]}*"
+        return originals

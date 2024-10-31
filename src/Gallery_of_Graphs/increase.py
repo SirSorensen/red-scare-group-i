@@ -10,4 +10,23 @@ from Gallery_of_Graphs.graph import Graph
 
 class Increase(Graph):
     def __init__(self, input_lines : list[str]):
+        self.node_ids = {}
         super().__init__(input_lines)
+    
+    # Helper functions for specific graph-types
+    def node_to_id(self, node_str) -> int:
+        node_val = int(node_str)
+        node_id = self.node_ids.get(node_val)
+        if node_id is None:
+            node_id = len(self.node_ids)
+            self.node_ids[node_val] = node_id
+        return node_id
+    
+    def ids_to_nodes(self, node_ids : list[int]):
+        rev_dict = {v:k for (k,v) in self.node_ids.items()}
+        originals = [str(rev_dict[node_id]) for node_id in node_ids]
+        for i in range(len(node_ids)):
+            _id = node_ids[i]
+            if self.node_colours[_id]:
+                originals[i] = f"*{originals[i]}*"
+        return originals
