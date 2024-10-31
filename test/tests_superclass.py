@@ -1,7 +1,10 @@
 import sys
 import unittest
+import pathlib
 
-sys.path.append('../src')
+src = pathlib.Path(__file__).resolve().parent.parent / 'src'
+
+sys.path.append(str(src))
 from Gallery_of_Graphs.graph import Graph
 from Utils.graph_factory import construct_graph
 

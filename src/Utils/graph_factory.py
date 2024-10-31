@@ -1,5 +1,7 @@
-
 import re
+import sys
+import pathlib
+import logging
 from Gallery_of_Graphs.grid import Grid
 from Gallery_of_Graphs.increase import Increase
 from Gallery_of_Graphs.ski import Ski
@@ -10,8 +12,11 @@ from Gallery_of_Graphs.graph import Graph
 
 
 def construct_graph(file_name) -> Graph:
-    file_path = f'../data/{file_name}.txt'
-    with open(file_path, "r") as file:  
+    root = pathlib.Path(__file__).resolve().parent.parent.parent
+    path = root / 'data' / f'{file_name}.txt'
+    
+    
+    with open(path, "r") as file:  
         input_lines = file.read().splitlines()
  
     # Regex match case has taken inspiration from https://stackoverflow.com/a/72538070
