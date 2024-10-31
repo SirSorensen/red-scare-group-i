@@ -1,33 +1,26 @@
 # Translated to python from https://algs4.cs.princeton.edu/44sp/DijkstraSP.java.html
 
+import sys
 import heapdict
+from Gallery_of_Graphs.graph_interface import IGraph
 
 class Dijkstra:
-    def __init__(self, s : int, t : int, vertex_amount : int, edges_from : list[list[int]], node_colours : list[bool]):
-        self.s = s
-        self.t = t
-        self.edges_from = edges_from
-        self.node_colours = node_colours
+    def __init__(self, G : IGraph, red_weight = 1):
+        self.distTo = [sys.maxsize for _ in range(G.node_amount)]
+        self.distTo[G.start] = red_weight if G.node_colours[G.start] else 0
 
-        max_weight = 1.0
-        for v in range(vertex_amount):
-            for dest in edges_from[v]:
-                max_weight += self.calc_weight(dest)
-
-        self.distTo = [max_weight for _ in range(vertex_amount)]
-        self.distTo[s] = 0.0
-
-        self.edgeTo : list = [None]*vertex_amount
+        self.edgeTo : list = [None]*G.node_amount
         self.pq : heapdict.heapdict = heapdict.heapdict()
+        self.G = G
+        self.red_weight = red_weight
+
         self.dijkstra()
 
     def dijkstra(self):
-
-        # relax vertices in order of distance from s
-        self.pq[self.s] = self.distTo[self.s]
+        self.pq[self.G.start] = self.distTo[self.G.start]
         while len(self.pq.keys()) > 0:
             (k, _) = self.pq.popitem()
-            for w in self.edges_from[k]:
+            for w in self.G.edges[k]:
                 self.relax(k, w)
     
     # relax edge e and update pq if changed
@@ -41,25 +34,31 @@ class Dijkstra:
             self.edgeTo[dest] = (source, dest, weight)
             self.pq[dest] = potential_new_weight
 
-    
+    # Return red_weight if dest is red, 0 if black
     def calc_weight(self, dest : int) -> int:
-        if self.node_colours[dest]:
-            return 1
-        else:
-            return 0
+        return int(self.G.node_colours[dest])*self.red_weight
     
-    def get_dist(self, v : int) -> float:
-        return self.distTo[v]
+    def get_dist(self, v : int) -> int:
+        dist = self.distTo[v]
+        if dist == sys.maxsize:
+            return -1
+        else:
+            return dist
     
     def get_path(self, v : int) -> list[int]:
+        if self.edgeTo[v] is None:
+            return []
+        
         path = [v]
-        while path[-1] != self.s:
-            (source, dest, weight) = self.edgeTo[path[-1]]
+        while path[-1] != self.G.start:
+            (source, _, _) = self.edgeTo[path[-1]]
+            if source in path:
+                return path
             path.append(source)
         return path
     
     def path_to_str(self, v : int) -> str:
-        path_str = [str(x) for x in self.get_path(v)]
-        path_str.reverse()
-        return ' -> '.join(path_str)
+        path_strs = self.G.ids_to_nodes(self.get_path(v))
+        path_strs.reverse()
+        return ' -> '.join(path_strs)
 
