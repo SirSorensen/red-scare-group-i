@@ -1,0 +1,51 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug none_tests.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/test/none_tests.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug few_tests.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/test/few_tests.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug many_tests.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/test/many_tests.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug some_tests.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/test/some_tests.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug alternate_tests.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/test/alternate_tests.py",
+            "console": "integratedTerminal"
+        }
+    ]
+}
