@@ -9,6 +9,7 @@
     Note that this definition requires the vertices on a path to be distinct, this is sometimes called a *simple* path.
 """
 
+from Utils.BFS import BreadthFirstPaths
 from Gallery_of_Graphs.graph_interface import IGraph
 from Utils.dijkstra import Dijkstra
 
@@ -82,7 +83,8 @@ class Graph(IGraph):
         Thus, if $s->t ∈ E(G)$ then the answer is 1, no matter the colour of $s$ or $t$.
     """
     def solve_none(self) -> int:
-        ...
+        bfs = BreadthFirstPaths(self, True)
+        return bfs.pathLength(self.end)
 
     """
         Some:
