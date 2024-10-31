@@ -5,6 +5,8 @@ from tests_superclass import UnitTests
 
 sys.path.append('../src')
 from Gallery_of_Graphs.graph import Graph
+from Utils.graph_factory import construct_graph
+from Utils.negative_dijkstra import NegativeDijkstra
 
 class SomeTests(UnitTests):
     def test_example(self):
@@ -41,6 +43,19 @@ class SomeTests(UnitTests):
     def _solve(self, g : Graph):
         self.solutionType = 'Some'
         return g.solve_some()
+
+    def _get_failure_str(self, file_name, actual, expected, g):
+        return f"\n\n{file_name} gave {actual} but should have given {expected}.\nPath found = {SomeTests._get_path(g)}\nDistances found = \n{SomeTests._get_distTo(g)}\n\nGraph details:\n{g}"
+    
+    def _get_path(g : Graph):
+        return NegativeDijkstra(g).path_to_str(g.end)
+    
+    def _get_distTo(g : Graph):
+        dij = NegativeDijkstra(g)
+        node_ids = [_id for _id in range(g.node_amount)]
+        node_originals = g.ids_to_nodes(node_ids)
+        distTo = [str(dist) if dist != sys.maxsize else '_infinite_' for dist in dij.distTo]
+        return '\n'.join([f"    - {distTo[_id]} distance to {node_originals[_id]}" for _id in node_ids])
 
 
 if __name__ == '__main__':

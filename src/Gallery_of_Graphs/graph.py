@@ -14,6 +14,7 @@ from Gallery_of_Graphs.graph_interface import IGraph
 from Utils.dijkstra import Dijkstra
 from Utils.alternateBFS import AlternateBreadthFirstPaths
 from Utils.longest_path import Longest_Path
+from Utils.negative_dijkstra import NegativeDijkstra
 
 class Graph(IGraph):
     def __init__(self, input_lines : list[str]):
@@ -94,7 +95,9 @@ class Graph(IGraph):
         Otherwise, return `false.'
     """
     def solve_some(self) -> bool:
-        return self.solve_many() > 0
+        dijkstra = NegativeDijkstra(self)
+        dist = dijkstra.get_dist(self.end)
+        return dist < 0
     
     """
         Many:
