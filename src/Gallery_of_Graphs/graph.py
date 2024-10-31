@@ -110,13 +110,9 @@ class Graph(IGraph):
         If no path from $s$ to $t$ exists, return `-1'.
     """
     def solve_few(self) -> int:
-        dijkstra = Dijkstra(self.start, self.end, self.node_amount, self.edges, self.node_colours)
-        dist = dijkstra.get_dist(self.end)
-        if self.node_colours[self.start]:
-            dist += 1
-        
-        # print(dijkstra.path_to_str(self.end)) # For printing the path
-        return int(dist)
+        dijkstra = Dijkstra(self)        
+        #print(dijkstra.path_to_str(self.end)) # For printing the path
+        return dijkstra.get_dist(self.end)
     
     """
         Alternate:

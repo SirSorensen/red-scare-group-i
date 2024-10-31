@@ -5,6 +5,8 @@ from tests_interface import TestsInterface
 
 sys.path.append('../src')
 from Gallery_of_Graphs.graph import Graph
+from Utils.graph_factory import construct_graph
+from Utils.dijkstra import Dijkstra
 
 class FewTests(TestsInterface):
     def test_example(self):
@@ -41,6 +43,19 @@ class FewTests(TestsInterface):
     ###     Helper functions     ###
     def _solve(self, g : Graph):
         return g.solve_few()
+    
+    def _get_failure_str(self, file_name, actual, expected, g):
+        return f"\n\n{file_name} gave {actual} but should have given {expected}.\nPath found = {FewTests._get_path(g)}\nDistances found = \n{FewTests._get_distTo(g)}\n\nGraph details:\n{g}"
+    
+    def _get_path(g : Graph):
+        return Dijkstra(g).path_to_str(g.end)
+    
+    def _get_distTo(g : Graph):
+        dij = Dijkstra(g)
+        node_ids = [_id for _id in range(g.node_amount)]
+        node_originals = g.ids_to_nodes(node_ids)
+        distTo = [str(dist) if dist != sys.maxsize else '_infinite_' for dist in dij.distTo]
+        return '\n'.join([f"    - {distTo[_id]} distance to {node_originals[_id]}" for _id in node_ids])
 
 if __name__ == '__main__':
     unittest.main()
