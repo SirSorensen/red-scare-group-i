@@ -12,6 +12,7 @@
 from Utils.BFS import BreadthFirstPaths
 from Gallery_of_Graphs.graph_interface import IGraph
 from Utils.dijkstra import Dijkstra
+from Utils.alternateBFS import AlternateBreadthFirstPaths
 
 
 class Graph(IGraph):
@@ -123,7 +124,8 @@ class Graph(IGraph):
         Otherwise, return `false.'
     """
     def solve_alternate(self) -> bool:
-        ...
+        bfs = AlternateBreadthFirstPaths(self)
+        return (bfs.hasPathTo(self.end))
     
 
 
