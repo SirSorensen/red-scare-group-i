@@ -52,3 +52,29 @@ To print the graph file name from the data folder add the word `debug` as an arg
 ```sh
 python tests/none_tests.py debug
 ```
+
+## Visualizing a graph
+
+### Videos
+
+To get a video of a graph, run the following command:
+
+```sh
+py ./src/visualization/run_animation.py <data file name> 
+```
+
+The video will be saved in the `media/videos/1080p60` folder.
+
+> Note: The videos work poorly for large and square graphs.
+
+### Grid graphs
+
+For the grid graphs i recommend running the following command:
+
+```sh
+py ./src/visualization/grid_draw.py <data file name>
+```
+
+The image will be saved in the `media/images` folder.
+
+> Note: The structure used for the grid graphs can probably be used in implementations for other graph types as well.
