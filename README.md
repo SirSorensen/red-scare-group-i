@@ -57,10 +57,19 @@ python tests/none_tests.py debug
 
 ### Videos
 
+> [!NOTE]
+> The video is rendered with Manim, so you need to install the prerequisites. You can find the installation guide [here](https://docs.manim.community/en/stable/installation.html).
+>
+> ```sh
+> #winget install Python.Python.3.13
+> winget install ffmpeg
+> python -m pip install manim
+> ```
+
 To get a video of a graph, run the following command:
 
 ```sh
-py ./src/visualization/run_animation.py <data file name> 
+python ./src/visualization/run_animation.py <data file name> 
 ```
 
 The video will be saved in the `media/videos/1080p60` folder.
@@ -72,7 +81,7 @@ The video will be saved in the `media/videos/1080p60` folder.
 For the grid graphs i recommend running the following command:
 
 ```sh
-py ./src/visualization/grid_draw.py <data file name>
+python ./src/visualization/grid_draw.py <data file name>
 ```
 
 The image will be saved in the `media/images` folder.
