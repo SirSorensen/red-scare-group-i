@@ -16,6 +16,10 @@ def read_graph_from_file(filepath):
         if '--' in line:
             nodes = line.split('--')
             edges.append((nodes[0].strip(), nodes[1].strip()))
+            edges.append((nodes[1].strip(), nodes[0].strip()))
+        elif '->' in line:
+            nodes = line.split('->')
+            edges.append((nodes[0].strip(), nodes[1].strip()))
         elif '*' in line:
             node = line.split()[0]
             red_nodes.add(node.strip())
@@ -29,9 +33,11 @@ def draw_graph(edges, red_nodes, node_count, start, end):
     n = int(node_count ** 0.5)
     
     pos = {f"{i}_{j}": (i, j) for i in range(n) for j in range(n)}
-    node_colors = ['red' if node in red_nodes else 
+    node_colors = ['orange' if node in red_nodes and node == start else
+                   'purple' if node in red_nodes and node == end else
+                   'red' if node in red_nodes else 
                    'green' if node == start else 
-                   'yellow' if node == end else 
+                   'blue' if node == end else
                    'skyblue' for node in G.nodes()]
     
     # Calculate figure size dynamically

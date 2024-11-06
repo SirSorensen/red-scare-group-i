@@ -16,7 +16,7 @@ if __name__ == "__main__":
         print("Usage: python run_animation.py <file_name>")
         sys.exit(1)
 
-    config.output_file = file_name
+    config.output_file = f"{file_name}-manim"
     # config.frame_size = (800, 800) # if we want to change the frame size
     
     # bugs out by some reason
