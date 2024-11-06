@@ -1,4 +1,5 @@
 # Introduction
+(*OBS!* see meeting notes and work delegation: path (`red-scare-group-i\doc\notes\metting notes\`))
 
 This repository is for the [Red Scare](https://learnit.itu.dk/mod/assign/view.php?id=208004) project for the course "Algorithm Design, MSc CS (Autumn 2024)" at the IT University in Copenhagen.
 
