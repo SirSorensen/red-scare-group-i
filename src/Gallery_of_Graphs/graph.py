@@ -61,9 +61,6 @@ class Graph(IGraph):
                 self.edges[e_t].append(e_s)
             else:
                 raise ValueError("Edge arrow not recognised.")
-        
-        self.node_amount = len(self.node_ids)
-        self.node_colours = self.node_colours[:self.node_amount]
 
     def __str__(self) -> str:
         edges_str = ""
