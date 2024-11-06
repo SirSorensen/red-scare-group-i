@@ -24,4 +24,5 @@
    * Vi behøver kun 1 række cache/memory, længde N
    * Vi skal pre-process og lave en graf med inverted edges.
 
-Adrian confirmed David's idea: We can solve some (not all) general scenarios by using Bellman-Ford (which allows cycles) and finding "shortest path" where edges to red nodes have weight -1 and all other edges have weight 0. It doesn't work for cycles with negative weight, though.
+## Generelt:
+Vi kan løse visse (ikke alle) generelle scenarier via. Bellman-Ford (som tillader cycler) og finde "shortest path" hvor vi sætter edges mod røde noder til vægt -1 og alle andre edges får vægt 0. Det virker dog ikke for cycler med negativ vægt (så cykler som indeholder røde noder).
