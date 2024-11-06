@@ -27,6 +27,7 @@ class Graph(IGraph):
         # the line of the input file, on which edges start to be described
         edges_begin = nodes_begin+self.node_amount
         
+        self.node_ids : dict[str, int] = {}
         node_inputs = input_lines[nodes_begin:edges_begin]
         self.node_colours = [False for _ in range(self.node_amount)]
         for s in node_inputs:
@@ -60,6 +61,9 @@ class Graph(IGraph):
                 self.edges[e_t].append(e_s)
             else:
                 raise ValueError("Edge arrow not recognised.")
+        
+        self.node_amount = len(self.node_ids)
+        self.node_colours = self.node_colours[:self.node_amount]
 
     def __str__(self) -> str:
         edges_str = ""
@@ -130,12 +134,17 @@ class Graph(IGraph):
 
 
     ###     Helper functions for parsing and debugging     ###
-    def node_to_id(self, node_str) -> int:
-        return int(node_str)
+    def node_to_id(self, node_str : str):
+        node_id = self.node_ids.get(node_str)
+        if node_id is None:
+            node_id = len(self.node_ids)
+            self.node_ids[node_str] = node_id
+        return node_id
         
     
     def ids_to_nodes(self, node_ids : list[int]) -> list[str]:
-        originals = [str(node_id) for node_id in node_ids]
+        rev_dict = {v:k for (k,v) in self.node_ids.items()}
+        originals = [rev_dict[node_id] for node_id in node_ids]
         for i in range(len(node_ids)):
             _id = node_ids[i]
             if self.node_colours[_id]:
