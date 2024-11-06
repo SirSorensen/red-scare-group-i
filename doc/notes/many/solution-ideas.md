@@ -25,4 +25,4 @@
    * Vi skal pre-process og lave en graf med inverted edges.
 
 ## Generelt:
-Vi kan løse visse (ikke alle) generelle scenarier via. Bellman-Ford (som tillader cycler) og finde "shortest path" hvor vi sætter edges mod røde noder til vægt -1 og alle andre edges får vægt 0. Det virker dog ikke for cycler med negativ vægt (så cykler som indeholder røde noder).
+Vi kan løse visse (ikke alle) generelle scenarier via. Bellman-Ford (som tillader cykler) + Dynamisk Programmering, og finde "shortest path" hvor vi sætter edges mod røde noder til vægt -1 og alle andre edges får vægt 0. Det virker dog ikke for cykler med negativ vægt (så cykler som indeholder røde noder).
