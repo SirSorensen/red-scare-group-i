@@ -2,24 +2,21 @@
 	# This code is contributed to GeeksForGeeks by mohit kumar 29.
 
 class Longest_Path:
-	def __init__(self, N, s, t, edges, node_colours):
-		self.table, self.visited = [], [False for i in range(N)] 
+	def __init__(self, N, s, edges, node_colours):
+		self.stack = []
+		self.visited =[False] * N
 		
-		s = 0
 		processed_graph = self.preprocess(N, edges, s, node_colours)
 		self.dist = self.longest_path(processed_graph, edges, node_colours)
 		
 	def preprocess(self, N, edges, s, node_colours):
-		dist = [-10**9 for _ in range(N)]  
+		dist = [-10**9] * N
+		dist[s] = int(node_colours[s])
 
 		for i in range(N):
-			if (self.visited[i] == False): 
+			if not self.visited[i]:
 				self.topological_sort_util(edges, i) 
-
-		if node_colours[s]:
-			dist[s] = 1
-		else:
-			dist[s] = 0
+		
 		return dist
 
 	#  May yield better performance with Kahn's topological sort
@@ -30,24 +27,20 @@ class Longest_Path:
 			if (not self.visited[i]): 
 				self.topological_sort_util(edges,i) 
 
-		self.table.append(n) 
+		self.stack.append(n) 
 
 	def longest_path(self, dist, edges, node_colours): 
 
-		while (len(self.table) > 0): 
-			
-			u = self.table[-1] 
+		while (len(self.stack) > 0): 
 
-			del self.table[-1] 
+			u = self.stack.pop()
 
 			if (dist[u] != 10**9): 
 				for i in edges[u]: 
 					
-					if node_colours[i]:
-						val = 1
-					else: 
-						val = 0
+					val = int(node_colours[i])
+					cur_dist = dist[u] + val
 
-					if (dist[i] < dist[u] + val): 
-						dist[i] = dist[u] + val 
+					if (dist[i] < cur_dist):
+						dist[i] = cur_dist 
 		return dist

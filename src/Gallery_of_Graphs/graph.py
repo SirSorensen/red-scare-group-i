@@ -104,7 +104,7 @@ class Graph(IGraph):
         If no path from $s$ to $t$ exists, return `-1'.
     """
     def solve_many(self) -> int:
-        result = Longest_Path(self.node_amount, self.start, self.end, 
+        result = Longest_Path(self.node_amount, self.start,
                               self.edges, self.node_colours)
         if result.dist[self.end] >= 0:
             return result.dist[self.end]
