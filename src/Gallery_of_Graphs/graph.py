@@ -13,7 +13,7 @@ from Utils.BFS import BreadthFirstPaths
 from Gallery_of_Graphs.graph_interface import IGraph
 from Utils.dijkstra import Dijkstra
 from Utils.alternateBFS import AlternateBreadthFirstPaths
-
+from Utils.longest_path import Longest_Path
 
 class Graph(IGraph):
     def __init__(self, input_lines : list[str]):
@@ -94,7 +94,7 @@ class Graph(IGraph):
         Otherwise, return `false.'
     """
     def solve_some(self) -> bool:
-        ...
+        return self.solve_many <= 0
     
     """
         Many:
@@ -104,7 +104,12 @@ class Graph(IGraph):
         If no path from $s$ to $t$ exists, return `-1'.
     """
     def solve_many(self) -> int:
-        ...
+        result = Longest_Path(self.node_amount, self.start, self.end, 
+                              self.edges, self.node_colours)
+        if result.dist[self.end] >= 0:
+            return result.dist[self.end]
+        else:
+            return -1
     
     """
         Few:
