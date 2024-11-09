@@ -32,6 +32,9 @@ class ManyTests(UnitTests):
 
     def test_ski(self):
         self._act_assert('ski-illustration', 1)
+        self._act_assert('ski-level3-1', 3)
+        self._act_assert('ski-level5-3', 0)
+
 
     def test_increase(self):
         self._act_assert('increase-n8-1', 2)

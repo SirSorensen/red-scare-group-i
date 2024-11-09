@@ -1,8 +1,5 @@
-# From https://www.geeksforgeeks.org/find-longest-path-directed-acyclic-graph/
+# Original code from https://www.geeksforgeeks.org/find-longest-path-directed-acyclic-graph/
 	# This code is contributed to GeeksForGeeks by mohit kumar 29.
-# A recursive function used by longestPath. See below 
-# link for details 
-# https:#www.geeksforgeeks.org/topological-sorting/ 
 
 class Longest_Path:
 	def __init__(self, N, s, t, edges, node_colours):
@@ -25,7 +22,7 @@ class Longest_Path:
 			dist[s] = 0
 		return dist
 
-
+	#  May yield better performance with Kahn's topological sort
 	def topological_sort_util(self, edges, n): 
 		self.visited[n] = True
 
