@@ -42,6 +42,7 @@ class FewTests(UnitTests):
     
     ###     Helper functions     ###
     def _solve(self, g : Graph):
+        self.solutionType = 'Few'
         return g.solve_few()
     
     def _get_failure_str(self, file_name, actual, expected, g):

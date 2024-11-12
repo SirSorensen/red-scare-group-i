@@ -19,6 +19,7 @@ class ManyTests(UnitTests):
 
     ###     Helper functions     ###
     def _solve(self, g : Graph):
+        self.solutionType = 'Many'
         return g.solve_many()
 
 if __name__ == '__main__':

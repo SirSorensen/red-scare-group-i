@@ -163,3 +163,4 @@ cython_debug/
 
 # Manim
 media/
+test_results.txt

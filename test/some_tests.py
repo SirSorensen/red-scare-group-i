@@ -39,6 +39,7 @@ class SomeTests(UnitTests):
 
     ### Helper methods ###
     def _solve(self, g : Graph):
+        self.solutionType = 'Some'
         return g.solve_some()
 
 

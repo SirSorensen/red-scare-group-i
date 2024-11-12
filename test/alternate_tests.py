@@ -39,6 +39,7 @@ class AlternateTests(UnitTests):
 
     ### Helper methods ###
     def _solve(self, g : Graph):
+        self.solutionType = 'Alternate'
         return g.solve_alternate()
 
 

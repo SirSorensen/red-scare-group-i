@@ -40,6 +40,7 @@ class NoneTests(UnitTests):
     
     ###     Helper functions     ###
     def _solve(self, g : Graph):
+        self.solutionType = 'None'
         return g.solve_none()
 
 if __name__ == '__main__':

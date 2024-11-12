@@ -94,7 +94,7 @@ class Graph(IGraph):
         Otherwise, return `false.'
     """
     def solve_some(self) -> bool:
-        return self.solve_many <= 0
+        return self.solve_many() > 0
     
     """
         Many:
