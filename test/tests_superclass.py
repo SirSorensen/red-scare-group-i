@@ -11,6 +11,19 @@ from Utils.graph_factory import construct_graph
 results = {}
 
 class UnitTests(unittest.TestCase):
+
+    def test_directed_cyclic(self):
+        ...
+
+    def test_directed_acyclic(self):
+        ...
+
+    def test_undirected_cyclic(self):
+        ...
+    
+    def test_undirected_acyclic(self):
+        ...
+
     ###     Helper functions     ###
     def _act_assert(self, file_name, expected):
         # Arrange
