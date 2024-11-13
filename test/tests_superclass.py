@@ -9,25 +9,17 @@ from Gallery_of_Graphs.graph import Graph
 from Utils.graph_factory import construct_graph
 
 class UnitTests(unittest.TestCase):
-    def test_example(self):
+
+    def test_directed_cyclic(self):
         ...
 
-    def test_individuals(self):
+    def test_directed_acyclic(self):
         ...
 
-    def test_word_graphs(self):
-        ...
-
-    def test_grids(self):
+    def test_undirected_cyclic(self):
         ...
     
-    def test_walls(self):
-        ...
-
-    def test_ski(self):
-        ...
-
-    def test_increase(self):
+    def test_undirected_acyclic(self):
         ...
 
     ###     Helper functions     ###
