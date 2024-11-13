@@ -133,6 +133,15 @@ class Graph(IGraph):
         bfs = AlternateBreadthFirstPaths(self)
         return (bfs.hasPathTo(self.end))
     
+    def solve_all(self) -> str:
+        result = ""
+        result += f"None: {self.solve_none()}\n"
+        result += f"Some: {self.solve_some()}\n"
+        result += f"Many: {self.solve_many()}\n"
+        result += f"Few: {self.solve_few()}\n"
+        result += f"Alternate: {self.solve_alternate()}\n"
+        return result
+
 
 
     ###     Helper functions for parsing and debugging     ###

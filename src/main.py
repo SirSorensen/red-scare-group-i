@@ -6,4 +6,4 @@ file_name = 'G-ex' if len(sys.argv) < 2 else sys.argv[1]
 
 g : Graph = construct_graph(file_name)
 
-print(g)
+print(g.solve_all())
