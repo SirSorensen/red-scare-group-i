@@ -31,6 +31,7 @@ class SomeTests(UnitTests):
         self._act_assert('P3-0', True)
         self._act_assert('P3-1', False)
         self._act_assert('common-1-20', False)
+        self._act_assert('common-1-50', False)
 
     ### Helper methods ###
     def _solve(self, g : Graph):

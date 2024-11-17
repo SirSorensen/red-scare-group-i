@@ -19,8 +19,9 @@ class ManyTests(UnitTests):
 
     def test_undirected_acyclic(self):
         self._act_assert('P3-0', 1)
-        self._act_assert('P3-1', 1)
+        self._act_assert('P3-1', -1)
         self._act_assert('common-1-20', -1)
+        self._act_assert('common-1-50', -1)
 
 
     ###     Helper functions     ###

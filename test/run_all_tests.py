@@ -10,7 +10,8 @@ class CustomTestResult(unittest.TextTestResult):
             super().addSuccess(test) # might want to do this line manualy
             
     def _write_status(self, test, status):
-        self.stream.writeln(f"{test.solutionType}  {test.file}\tExpected: {test.expected}, Actual: {test.actual}\t{status}")
+        if hasattr(test, 'solutionType'):
+            self.stream.writeln(f"{test.solutionType}  {test.file}\tExpected: {test.expected}, Actual: {test.actual}\t{status}")
 
     def addError(self, test, err):
         self._write_status(test, "Error")
