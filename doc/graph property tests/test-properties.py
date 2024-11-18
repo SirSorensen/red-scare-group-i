@@ -88,11 +88,9 @@ if __name__ == '__main__':
 
     graphs = []
 
-    # Check if the resolved directory exists
     if not directory.is_dir():
         raise FileNotFoundError(f"Directory not found: {directory}")
 
-    # List files in the specified directory
     for filename in os.listdir(directory):
         f = os.path.join(directory, filename)
         if os.path.isfile(f):  # Make sure it's a file, not a subdirectory
