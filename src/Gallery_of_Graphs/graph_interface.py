@@ -7,6 +7,7 @@ class IGraph:
         self.start : int
         self.end : int
         self.edges : list[list[int]]
+        self.is_directed : bool
 
     def __str__(self) -> str:
         pass
