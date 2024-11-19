@@ -13,7 +13,7 @@ from Utils.BFS import BreadthFirstPaths
 from Gallery_of_Graphs.graph_interface import IGraph
 from Utils.dijkstra import Dijkstra
 from Utils.alternateBFS import AlternateBreadthFirstPaths
-from Utils.longest_path import Longest_Path
+from Utils.Longest_Path.longest_path import Longest_Path
 
 class Graph(IGraph):
     def __init__(self, input_lines : list[str]):
@@ -30,6 +30,7 @@ class Graph(IGraph):
         self.node_ids : dict[str, int] = {}
         node_inputs = input_lines[nodes_begin:edges_begin]
         self.node_colours = [False for _ in range(self.node_amount)]
+        self.is_directed = False
         for s in node_inputs:
             if ' ' in s:
                 ls = s.split(' ')
@@ -52,10 +53,12 @@ class Graph(IGraph):
             e_s = self.node_to_id(input[0])
             e_t = self.node_to_id(input[2])
             arrow = input[1]
+
             if arrow == "--":
                 self.edges[e_s].append(e_t)
                 self.edges[e_t].append(e_s)
             elif arrow == "->":
+                self.is_directed = True
                 self.edges[e_s].append(e_t)
             elif arrow == "<-": # Does not seem to happen ever
                 self.edges[e_t].append(e_s)
@@ -104,8 +107,8 @@ class Graph(IGraph):
         If no path from $s$ to $t$ exists, return `-1'.
     """
     def solve_many(self) -> int:
-        result = Longest_Path(self.node_amount, self.start,
-                              self.edges, self.node_colours)
+        result = Longest_Path(self.node_amount, self.start, self.end,
+                              self.edges, self.node_colours, self.is_directed)
         if result.dist[self.end] >= 0:
             return result.dist[self.end]
         else:
