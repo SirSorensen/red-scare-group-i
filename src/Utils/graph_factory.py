@@ -17,4 +17,4 @@ def construct_graph(file_name) -> Graph:
     with open(path, "r") as file:  
         input_lines = file.read().splitlines()
  
-    return Graph(input_lines, file_name)
+    return Graph(input_lines)

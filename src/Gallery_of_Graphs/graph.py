@@ -16,7 +16,7 @@ from Utils.alternateBFS import AlternateBreadthFirstPaths
 from Utils.Longest_Path.longest_path import Longest_Path
 
 class Graph(IGraph):
-    def __init__(self, input_lines : list[str], file_name : str):
+    def __init__(self, input_lines : list[str]):
         # node_amount = |V(G)| = number of nodes
         # edge_amount = |E(G)| = number of edges
         # red_amount = |R| = number of red nodes
