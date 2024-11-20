@@ -167,3 +167,6 @@ test_results.txt
 
 #Visual Studio
 .vs/
+
+# Output .txt files
+output.txt

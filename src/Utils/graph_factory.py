@@ -8,6 +8,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def construct_graph(file_name) -> Graph:
+    file_name = file_name.removesuffix('.txt')
     root = pathlib.Path(__file__).resolve().parent.parent.parent
     path = root / 'data' / f'{file_name}.txt'
     
