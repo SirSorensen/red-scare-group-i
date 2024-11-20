@@ -96,8 +96,11 @@ class Graph(IGraph):
         Return `true' if there is a path from $s$ to $t$ that includes at least one vertex from $R$.
         Otherwise, return `false.'
     """
-    def solve_some(self) -> bool:
-        return self.solve_many() > 0
+    def solve_some(self):
+        result = self.solve_many()
+        if result == "?":
+            return "?"
+        return result > 0
     
     """
         Many:
@@ -106,10 +109,12 @@ class Graph(IGraph):
         Return $max{ r(p) : p ∈ P }$.
         If no path from $s$ to $t$ exists, return `-1'.
     """
-    def solve_many(self) -> int:
+    def solve_many(self):
         result = Longest_Path(self.node_amount, self.start, self.end,
                               self.edges, self.node_colours, self.is_directed)
-        if result.dist[self.end] >= 0:
+        if result.graphIsNotSupported:
+            return "?"
+        elif result.dist[self.end] >= 0:
             return result.dist[self.end]
         else:
             return -1
