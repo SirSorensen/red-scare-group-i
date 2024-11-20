@@ -67,6 +67,11 @@ def put_into_latex_table(results : list[dict]) -> str:
     result += r"  Instance name & $|V(G)|$ & $|E(G)|$ & Alternate & Few & Many & None & Some \\" + "\n"
     result += r"  \midrule" + "\n"
     result += r"  \endhead" + "\n"
+    result += r"  \bottomrule" + "\n"
+    result += r"  \endfoot" + "\n"
+    result += r"  \bottomrule" + "\n"
+    result += r"  \caption{Table containing the results for all graphs of at least 500 vertices}" + "\n"
+    result += r"  \endlastfoot" + "\n"
     for cur_result in results:
         result += r"  "
         result += f"{cur_result["name"]} & "
@@ -77,7 +82,6 @@ def put_into_latex_table(results : list[dict]) -> str:
         result += f"{cur_result["many"]} & "
         result += f"{cur_result["none"]} & "
         result += f"{cur_result["some"]} \\\\\n"
-    result += r"  \bottomrule" + "\n"
     result += r"\end{longtable}" + "\n"
     return result
 
@@ -93,6 +97,7 @@ def _get_results(files : list):
     return results
 
 def print_latex_table(print_to_file = False):
+    print("Print latex table...\n")
     files = get_all_files()
     files.sort()
     results = _get_results(files)
