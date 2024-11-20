@@ -1,4 +1,3 @@
-import re
 import sys
 import pathlib
 import logging
