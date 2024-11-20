@@ -8,16 +8,6 @@ from os.path import isfile, join
 
 
 def solve_all(g : Graph) -> dict:
-    try:
-        some = g.solve_some()
-    except:
-        some = "?"
-
-    try:
-        many = g.solve_many()
-    except:
-        many = "?"
-
     return {
         "none" : try_solve(g.solve_none),
         "some" : try_solve(g.solve_some),
@@ -89,11 +79,12 @@ def _get_results(files : list):
     results = []
     for file_name in files:
         g = construct_graph(file_name)
-        cur_result = solve_all(g)
-        cur_result["n"] = g.node_amount
-        cur_result["m"] = g.edge_amount
-        cur_result["name"] = file_name
-        results.append(cur_result)
+        if g.node_amount >= 500:
+            cur_result = solve_all(g)
+            cur_result["n"] = g.node_amount
+            cur_result["m"] = g.edge_amount
+            cur_result["name"] = file_name
+            results.append(cur_result)
     return results
 
 def print_latex_table(print_to_file = False):
