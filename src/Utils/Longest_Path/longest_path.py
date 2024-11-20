@@ -3,14 +3,17 @@ from Utils.Longest_Path.longest_path_tree import Longest_Path_Tree
 
 class Longest_Path:
 	def __init__(self, N, s, t, edges, node_colours, is_directed):
-		self.stack = []
-		self.visited =[False] * N
-		self.dist = [-1] * N  	
-        
-		if(is_directed):
-			self.dist = Longest_Path_Directed_Graph(N, s, edges, node_colours).dist     
-		elif(is_acyclic_and_connected(self, N, edges)):		
-			self.dist = Longest_Path_Tree(N, edges, node_colours, t).dist
+            self.stack = []
+            self.visited = [False] * N
+            self.dist = [-1] * N 
+            self.graphIsNotSupported = False 
+
+            if is_directed:
+                self.dist = Longest_Path_Directed_Graph(N, s, edges, node_colours).dist
+            elif is_acyclic_and_connected(self, N, edges):		
+                self.dist = Longest_Path_Tree(N, edges, node_colours, t).dist
+            else:
+                self.graphIsNotSupported = True  
 
 def is_acyclic_and_connected(self, N, edges):
     visited = [False] * N 
