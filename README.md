@@ -21,6 +21,31 @@ python src/main.py
 
 Now you should have successfully run the program!
 
+If you want to output all solutions for all the files in the data folder, you can outcomment one of the last two lines in main.py.
+
+`print_all_solution` will print out all solutions for all the files in the data folder in an easily readable manner, such as:
+```
+G-ex.txt
+None: 3
+Some: False
+Many: -1
+Few: 0
+Alternate: True
+...
+```
+
+`print_latex_table` will print out all solutions for all the files in the data folder in a latex-longtable:
+```latex
+\begin{longtable}{lrrrrrrr}
+    \toprule
+    Instance name & $|V(G)|$ & $|E(G)|$ & Alternate & Few & Many & None & Some \\
+    \midrule
+    \endhead
+    G-ex.txt & 8 & 9 & True & 0 & -1 & 3 & False \\
+    K3-0.txt & 3 & 3 & True & 0 & -1 & 1 & False \\
+    ...
+```
+
 ## How to update Overleaf submodule
 
 In your terminal, write the following:

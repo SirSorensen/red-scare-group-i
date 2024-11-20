@@ -48,8 +48,7 @@ def print_solution(file_name : str):
     return result
 
 def print_all_solution(print_to_file = False):
-    dir_path : str = "data"
-    files = get_all_files(dir_path)
+    files = get_all_files()
     files.sort()
 
     results = []
@@ -93,8 +92,8 @@ def _get_results(files : list):
         results.append(cur_result)
     return results
 
-def print_latex_table(dir_path : str = "data", print_to_file = False):
-    files = get_all_files(dir_path)
+def print_latex_table(print_to_file = False):
+    files = get_all_files()
     files.sort()
     results = _get_results(files)
     print_result = put_into_latex_table(results)
@@ -106,10 +105,21 @@ def print_latex_table(dir_path : str = "data", print_to_file = False):
 
 
 
-def get_all_files(dir_path : str = "data"):
-    abs_path = os.path.abspath(os.getcwd()) + "/../" + dir_path
+def get_all_files():
+    abs_path = _get_data_path()
     return [f for f in listdir(abs_path) if isfile(join(abs_path, f))]
+
+def _get_data_path():
+    abs_path = os.path.abspath(os.getcwd())
+    dir_path : str = "/data"
+    if os.path.exists(abs_path + dir_path):
+        return abs_path + dir_path
     
+    dir_path : str = "/../data"
+    if os.path.exists(abs_path + dir_path):
+        return abs_path + dir_path
+    
+    raise FileNotFoundError()
 
 def output_to_file(output : str, file_location : str = "output.txt"):
     f = open(file_location, "w")
