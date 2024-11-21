@@ -22,6 +22,16 @@ def check_graph_acyclic(filename, graph):
         acyclic = not bool(nx.cycle_basis(graph))
     print_result(filename, property, acyclic)
 
+def check_graph_undirected_cyclic(filename, graph):
+    is_directed = graph.is_directed()
+    if is_directed:
+        property = 'directed cyclic'
+        cyclic = not (nx.is_directed_acyclic_graph(graph))
+    else:
+        property = 'undirected cyclic'
+        cyclic = bool(nx.cycle_basis(graph))
+    print_result(filename, property, cyclic)
+
 def check_graph_connected(filename, graph):
     is_directed = graph.is_directed()
     if is_directed:
@@ -97,17 +107,22 @@ if __name__ == '__main__':
             graph, s, t, cardinality_R = create_graph_from_file(f)
             graphs.append((filename, graph))
 
+    for (filename, graph) in graphs:
+        check_graph_undirected_cyclic(filename, graph)
+
     """
     for (filename, graph) in graphs:
-        check_graph_bipartite(filename, graph)
+        check_graph_planarity(filename, graph)
 
+    for (filename, graph) in graphs:
+        check_graph_bipartite(filename, graph)
+    
     for (filename, graph) in graphs:
         check_graph_acyclic(filename, graph)
 
     for (filename, graph) in graphs:
         check_graph_connected(filename, graph)
+
     """
-    for (filename, graph) in graphs:
-        check_graph_planarity(filename, graph)
         
 
