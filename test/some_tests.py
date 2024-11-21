@@ -27,6 +27,22 @@ class SomeTests(UnitTests):
         self._act_assert('wall-z-3', False)
         self._act_assert('wall-n-2', False)
 
+        self._act_assert('common-1-100.txt', False)
+        self._act_assert('dodecahedron.txt', True)
+        self._act_assert('gnm-10-15-0.txt', True)
+        self._act_assert('gnm-10-15-1.txt', True)
+        self._act_assert('gnm-10-20-0.txt', True)
+        self._act_assert('gnm-10-20-1.txt', True)
+        self._act_assert('grid-5-1', True)
+        self._act_assert('grid-5-2', True)
+        self._act_assert('smallworld-3-0', True)
+        self._act_assert('smallworld-3-1', True)
+        self._act_assert('wall-p-2', True)
+        self._act_assert('wall-z-1', True)
+        self._act_assert('wall-z-2', False)
+        self._act_assert('wall-n-1', True)
+        self._act_assert('wall-n-3', False)
+
     def test_udirected_acyclic(self): 
         self._act_assert('P3-0', True)
         self._act_assert('P3-1', False)
