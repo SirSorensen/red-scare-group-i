@@ -14,6 +14,7 @@ from Gallery_of_Graphs.graph_interface import IGraph
 from Utils.dijkstra import Dijkstra
 from Utils.alternateBFS import AlternateBreadthFirstPaths
 from Utils.Longest_Path.longest_path import Longest_Path
+from Utils.some_undirected_cyclic import some_undirected_cyclic
 
 class Graph(IGraph):
     def __init__(self, input_lines : list[str]):
@@ -26,6 +27,7 @@ class Graph(IGraph):
         nodes_begin = 2
         # the line of the input file, on which edges start to be described
         edges_begin = nodes_begin+self.node_amount
+        self.is_directed = True
         
         self.node_ids : dict[str, int] = {}
         node_inputs = input_lines[nodes_begin:edges_begin]
@@ -57,6 +59,7 @@ class Graph(IGraph):
             if arrow == "--":
                 self.edges[e_s].append(e_t)
                 self.edges[e_t].append(e_s)
+                self.is_directed = False
             elif arrow == "->":
                 self.is_directed = True
                 self.edges[e_s].append(e_t)
@@ -64,6 +67,8 @@ class Graph(IGraph):
                 self.edges[e_t].append(e_s)
             else:
                 raise ValueError("Edge arrow not recognised.")
+        
+        self.is_cyclic = self._is_cyclic
 
     def __str__(self) -> str:
         edges_str = ""
@@ -75,6 +80,47 @@ class Graph(IGraph):
         s += f"Node colours (True if red, False if black) :\n   {self.node_colours}\n"
         s += f"Edges : {edges_str}"
         return s
+    
+    def _is_cyclic(self) -> bool:
+        """Check if the graph is cyclic."""
+        visited = [False] * self.node_amount
+        rec_stack = [False] * self.node_amount  # For directed graphs
+
+        def dfs_directed(v):
+            visited[v] = True
+            rec_stack[v] = True
+            for neighbor in self.edges[v]:
+                if not visited[neighbor]:
+                    if dfs_directed(neighbor):
+                        return True
+                elif rec_stack[neighbor]:
+                    return True
+            rec_stack[v] = False
+            return False
+
+        def dfs_undirected(v, parent):
+            visited[v] = True
+            for neighbor in self.edges[v]:
+                if not visited[neighbor]:
+                    if dfs_undirected(neighbor, v):
+                        return True
+                elif neighbor != parent:
+                    return True
+            return False
+
+        if self.is_directed:
+            for node in range(self.node_amount):
+                if not visited[node]:
+                    if dfs_directed(node):
+                        return True
+        else:
+            for node in range(self.node_amount):
+                if not visited[node]:
+                    if dfs_undirected(node, -1):
+                        return True
+
+        return False
+
         
     ####     The problems we want solved for each graph are the following     ####
     """
@@ -97,6 +143,8 @@ class Graph(IGraph):
         Otherwise, return `false.'
     """
     def solve_some(self) -> bool:
+        if (not self.is_directed) and self.is_cyclic:
+            return some_undirected_cyclic(self)
         return self.solve_many() > 0
     
     """
