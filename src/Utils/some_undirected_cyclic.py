@@ -1,4 +1,4 @@
-def vertex_disjoint_paths(graph):
+def some_undirected_cyclic(graph):
     from collections import deque
     start = graph.start
     end = graph.end
