@@ -5,7 +5,9 @@ from Utils.Longest_Path.longest_path import Longest_Path
 class Longest_Path_Tree(Longest_Path):
     def __init__(self, g : IGraph):
         super().__init__(g)
+        self.parent = [-1]*g.node_amount
         self.dfs(g.edges)
+        self.calc_reds(g.node_amount, g.node_colours)
 
 
 
@@ -19,8 +21,17 @@ class Longest_Path_Tree(Longest_Path):
             for neighbor in tree_graph[node]:
                 if not self.visited[neighbor]:
                     self.visited[neighbor] = True
-                    self.dist[neighbor] = node
+                    self.parent[neighbor] = node
                     self.stack.append(neighbor)
+
+    def calc_reds(self, N, node_colours : list[bool]):
+        for node_index in range(N):
+            reds = int(node_colours[node_index])
+            cur_parent = self.parent[node_index]
+            while cur_parent != -1:
+                reds += int(node_colours[cur_parent])
+                cur_parent = self.parent[cur_parent]
+            self.dist[node_index] = reds
 
 
 
