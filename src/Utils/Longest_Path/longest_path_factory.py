@@ -11,7 +11,7 @@ def gen_longest_path(g : IGraph) -> Longest_Path:
         elif is_acyclic_and_connected(g.node_amount, g.edges):
             return Longest_Path_Tree(g)
         else:
-            return Longest_Path(g, True)
+            return Longest_Path(g, False)
 
 def is_acyclic_and_connected(N, edges):
     visited = [False] * N
