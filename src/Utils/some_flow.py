@@ -75,7 +75,7 @@ class some_flow:
             if self.graph.node_colours[i]:
                 reds.append(i)
 
-        # If either start or end is red - bfs from start to end
+        # If either start or end is red - bfs from start to end.
         if self.graph.start in reds or self.graph.end in reds:
             return bfs(self.graph.start, self.graph.end, {}, self.capacity, self.flow, self.adj_list)
 
