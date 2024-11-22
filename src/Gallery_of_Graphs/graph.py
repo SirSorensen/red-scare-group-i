@@ -69,7 +69,6 @@ class Graph(IGraph):
         edges_str = ""
         for i in range(self.node_amount):
             edges_str += f"\n   {i} -> {self.ids_to_nodes(self.edges[i])}"
-                
         
         s = f"This graph has {self.node_amount} nodes, {self.edge_amount} edges, and {self.red_amount} red nodes.\n"
         s += f"Node colours (True if red, False if black) :\n   {self.node_colours}\n"
@@ -127,7 +126,7 @@ class Graph(IGraph):
         If no path from $s$ to $t$ exists, return `-1'.
     """
     def solve_few(self) -> int:
-        dijkstra = Dijkstra(self)        
+        dijkstra = Dijkstra(self)
         #print(dijkstra.path_to_str(self.end)) # For printing the path
         return dijkstra.get_dist(self.end)
     
@@ -150,7 +149,6 @@ class Graph(IGraph):
             node_id = len(self.node_ids)
             self.node_ids[node_str] = node_id
         return node_id
-        
     
     def ids_to_nodes(self, node_ids : list[int]) -> list[str]:
         rev_dict = {v:k for (k,v) in self.node_ids.items()}
