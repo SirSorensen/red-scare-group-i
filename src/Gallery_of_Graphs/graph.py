@@ -14,6 +14,7 @@ from Gallery_of_Graphs.graph_interface import IGraph
 from Utils.dijkstra import Dijkstra
 from Utils.alternateBFS import AlternateBreadthFirstPaths
 from Utils.Longest_Path.longest_path_factory import longest_path_result
+from Utils.some_flow import some_flow
 
 class Graph(IGraph):
     def __init__(self, input_lines : list[str]):
@@ -96,11 +97,11 @@ class Graph(IGraph):
         Otherwise, return `false.'
     """
     def solve_some(self):
-        result = self.solve_many()
-        if result == "?":
-            return "?"
-        return result > 0
-    
+        #TODO Implement check for directed cyclic
+        if (False): return("?!")
+        #TODO Solve directed cases with Many
+        elif self.is_directed: return("Should be solved w. Many")
+        else: return some_flow(self).some()
     """
         Many:
         Return the maximum number of red vertices on any path from $s$ to $t$.

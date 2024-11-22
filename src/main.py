@@ -7,5 +7,5 @@ print_solution(file_name)
 
 
 ### Outcomment if you want to print out all results: ###
-#print_all_solution(print_to_file = True)
+print_all_solution(print_to_file = True)
 #print_latex_table(print_to_file = True)
