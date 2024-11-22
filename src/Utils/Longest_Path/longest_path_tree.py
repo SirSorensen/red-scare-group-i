@@ -6,15 +6,15 @@ class Longest_Path_Tree(Longest_Path):
     def __init__(self, g : IGraph):
         super().__init__(g)
         self.parent = [-1]*g.node_amount
-        self.dfs(g.edges)
-        self.calc_reds(g.node_amount, g.node_colours)
+
+        self.stack.append(g.start)
+        self.dist[g.start] = int(g.node_colours[g.start])
+        self.visited[g.start] = True
+        self.dfs(g.edges, g.node_colours)
 
 
 
-    def dfs(self, tree_graph : list[int]):
-        self.stack.append(0)
-        self.visited[0] = True
-
+    def dfs(self, tree_graph : list[int], node_colours : list[bool]):
         while len(self.stack) > 0:
             node = self.stack.pop()
 
@@ -22,19 +22,12 @@ class Longest_Path_Tree(Longest_Path):
                 if not self.visited[neighbor]:
                     self.visited[neighbor] = True
                     self.parent[neighbor] = node
+                    self.dist[neighbor] = self.calc_red(neighbor, node_colours)
                     self.stack.append(neighbor)
-
-    def calc_reds(self, N, node_colours : list[bool]):
-        for node_index in range(N):
-            reds = int(node_colours[node_index])
-            cur_parent = self.parent[node_index]
-            while cur_parent != -1:
-                reds += int(node_colours[cur_parent])
-                cur_parent = self.parent[cur_parent]
-            self.dist[node_index] = reds
-
-
-
-
-
+    
+    def calc_red(self, node_index : int, node_colours : list[bool]) -> int:
+        parent_reds : int = self.dist[self.parent[node_index]]
+        if parent_reds < 0:
+            raise ValueError("Parent has under 0 red nodes in path!")
+        return parent_reds + int(node_colours[node_index])
 
