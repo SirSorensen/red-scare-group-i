@@ -14,38 +14,34 @@ def gen_longest_path(g : IGraph) -> Longest_Path:
             return Longest_Path(g, False)
 
 def is_acyclic_and_connected(N, edges):
-    visited = [False] * N
-
-    def is_connected():
-        stack = [0]
-        seen = set()
-        while stack:
-            node = stack.pop()
-            if node in seen:
-                continue
-            seen.add(node)
-            for neighbor in edges[node]:
-                if neighbor not in seen:
-                    stack.append(neighbor)
-        return len(seen) == N
-
-    def dfs_cycle_detection_undirected(node, parent):
-        visited[node] = True
-        for neighbor in edges[node]:
-            if not visited[neighbor]:
-                if dfs_cycle_detection_undirected(neighbor, node):
-                    return True
-            elif neighbor != parent:
-                return True
+    if dfs_cycle_detection_undirected([False] * N, 0, -1, edges):
         return False
 
-    if dfs_cycle_detection_undirected(0, -1):
-        return False
-
-    if not is_connected():
+    if not is_connected(N, edges):
         return False
 
     return True
 
+def is_connected(N, edges):
+    stack = [0]
+    seen = set()
+    while stack:
+        node = stack.pop()
+        if node in seen:
+            continue
+        seen.add(node)
+        for neighbor in edges[node]:
+            if neighbor not in seen:
+                stack.append(neighbor)
+    return len(seen) == N
 
+def dfs_cycle_detection_undirected(visited, node, parent, edges):
+    visited[node] = True
+    for neighbor in edges[node]:
+        if not visited[neighbor]:
+            if dfs_cycle_detection_undirected(visited, neighbor, node, edges):
+                return True
+        elif neighbor != parent:
+            return True
+    return False
 
