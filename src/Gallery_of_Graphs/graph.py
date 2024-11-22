@@ -8,6 +8,7 @@
     The *length* of such a path is $l-1$. (The number of edges)
     Note that this definition requires the vertices on a path to be distinct, this is sometimes called a *simple* path.
 """
+from operator import truediv
 
 from Utils.BFS import BreadthFirstPaths
 from Gallery_of_Graphs.graph_interface import IGraph
@@ -97,10 +98,11 @@ class Graph(IGraph):
         Otherwise, return `false.'
     """
     def solve_some(self):
-        #TODO Implement check for directed cyclic
-        if (False): return("?!")
-        #TODO Solve directed cases with Many
-        elif self.is_directed: return("Should be solved w. Many")
+        if self.is_directed:
+            res = self.solve_many()
+            if res >= 1: return True
+            elif res < 1: return False
+            else: return "?!"
         else: return some_flow(self).some()
     """
         Many:
