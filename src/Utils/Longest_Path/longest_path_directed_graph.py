@@ -9,19 +9,14 @@ class Longest_Path_Directed_Graph(Longest_Path):
 	def __init__(self, g : IGraph):
 		super().__init__(g)
 		
-		processed_graph = self.preprocess(g.node_amount, g.edges, g.start, g.node_colours)
-		self.dist = self.longest_path(processed_graph, g.edges, g.node_colours)
+		self.preprocess(g.node_amount, g.edges)
+		self.dist = self.longest_path(self.dist, g.edges, g.node_colours)
 
 
-	def preprocess(self, N, edges, s, node_colours):
-		dist = [-10**9] * N
-		dist[s] = int(node_colours[s])
-
+	def preprocess(self, N, edges):
 		for i in range(N):
 			if not self.visited[i]:
 				self.topological_sort_util(edges, i)
-
-		return dist
 
 	#  May yield better performance with Kahn's topological sort
 	def topological_sort_util(self, edges, n):
@@ -39,7 +34,7 @@ class Longest_Path_Directed_Graph(Longest_Path):
 
 			u = self.stack.pop()
 
-			if (dist[u] != 10**9):
+			if (dist[u] != -1):
 				for i in edges[u]:
 
 					val = int(node_colours[i])

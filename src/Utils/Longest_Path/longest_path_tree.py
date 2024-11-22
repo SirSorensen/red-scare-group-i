@@ -8,7 +8,6 @@ class Longest_Path_Tree(Longest_Path):
         self.parent = [-1]*g.node_amount
 
         self.stack.append(g.start)
-        self.dist[g.start] = int(g.node_colours[g.start])
         self.visited[g.start] = True
         self.dfs(g.edges, g.node_colours)
 

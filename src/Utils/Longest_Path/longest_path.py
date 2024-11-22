@@ -5,4 +5,5 @@ class Longest_Path:
 		self.stack = []
 		self.visited = [False] * g.node_amount
 		self.dist = [-1] * g.node_amount
+		self.dist[g.start] = int(g.node_colours[g.start])
 		self.graphIsSupported = graphIsSupported
