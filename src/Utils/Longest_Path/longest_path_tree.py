@@ -5,14 +5,25 @@ from Utils.Longest_Path.longest_path import Longest_Path
 class Longest_Path_Tree(Longest_Path):
     def __init__(self, g : IGraph):
         super().__init__(g)
-        self.dfs(0, -1, g.edges, g.node_colours)
+        self.dfs(g.edges)
 
 
-    def dfs(self, node : int, red_count : int, tree_graph : list[int], node_colours : list[bool]):
-        self.visited[node] = True
-        self.dist[node] = red_count
 
-        for neighbor in tree_graph[node]:
-            if not self.visited[neighbor]:
-                self.dfs(neighbor, node, tree_graph, node_colours)
-        
+    def dfs(self, tree_graph : list[int]):
+        self.stack.append(0)
+        self.visited[0] = True
+
+        while len(self.stack) > 0:
+            node = self.stack.pop()
+
+            for neighbor in tree_graph[node]:
+                if not self.visited[neighbor]:
+                    self.visited[neighbor] = True
+                    self.dist[neighbor] = node
+                    self.stack.append(neighbor)
+
+
+
+
+
+
