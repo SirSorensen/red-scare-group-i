@@ -1,12 +1,11 @@
-class Longest_Path_Tree:
-    def __init__(self, N, edges, node_colours, t):
-        self.N = N
-        self.edges = edges
-        self.node_colours = node_colours
-        self.visited = [False] * N
-        self.dist = [-1] * N
+from Gallery_of_Graphs.graph_interface import IGraph
+from Utils.Longest_Path.longest_path import Longest_Path
 
-        self.dist = self.longest_path_tree(self.node_colours, self.N, self.edges)
+
+class Longest_Path_Tree(Longest_Path):
+    def __init__(self, g : IGraph):
+        super().__init__(g)
+        self.dist = self.longest_path_tree(g.node_colours, g.node_amount, g.edges)
 
     def build_tree_graph(self, N, edges):
         tree_graph = [[] for _ in range(N)]
