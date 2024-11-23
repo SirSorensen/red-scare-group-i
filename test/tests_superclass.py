@@ -38,7 +38,8 @@ class UnitTests(unittest.TestCase):
 
         if 'list' in sys.argv:
             results[file_name] = [actual, expected]
-            print(f"{file_name}; Actual: {actual}   Expected: {expected}.")
+            solution_type = self.solutionType if hasattr(self, 'solutionType') else ''
+            print(f"{solution_type} {file_name}; Actual: {actual}   Expected: {expected}.")
         
         # Arrange
         self.assertEqual(actual, expected, self._get_failure_str(file_name, actual, expected, g))
