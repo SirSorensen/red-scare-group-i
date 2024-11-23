@@ -8,7 +8,6 @@
     The *length* of such a path is $l-1$. (The number of edges)
     Note that this definition requires the vertices on a path to be distinct, this is sometimes called a *simple* path.
 """
-from operator import truediv
 
 from Utils.BFS import BreadthFirstPaths
 from Gallery_of_Graphs.graph_interface import IGraph

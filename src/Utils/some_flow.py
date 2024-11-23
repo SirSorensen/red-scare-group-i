@@ -4,9 +4,8 @@ from Gallery_of_Graphs.graph_interface import IGraph
 
 
 def bfs(source: int, sink: int, parent: dict, cap: dict, flow: dict, adjList: dict) -> bool:
-    visited = set()
+    visited = set([source])
     queue = deque([source])
-    visited.add(source)
 
     while queue:
         current = queue.popleft()
@@ -20,9 +19,7 @@ def bfs(source: int, sink: int, parent: dict, cap: dict, flow: dict, adjList: di
     return False
 
 #Inspired by https://www.w3schools.com/dsa/dsa_algo_graphs_edmondskarp.php
-def edmonds_karp(start, end, cap, flow, adjList) -> int:
-    source = start
-    sink = end
+def edmonds_karp(source, sink, cap, flow, adjList) -> int:
     parent = {}
     max_flow = 0
 
@@ -70,10 +67,7 @@ class some_flow:
         self.adj_list[G.node_amount*2].append(G.end + self.graph.node_amount)
 
     def some(self) -> bool:
-        reds = []
-        for i in range(self.graph.node_amount):
-            if self.graph.node_colours[i]:
-                reds.append(i)
+        reds = [index for index, value in enumerate(self.graph.node_colours) if value]
 
         # If either start or end is red - bfs from start to end.
         if self.graph.start in reds or self.graph.end in reds:
