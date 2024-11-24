@@ -21,12 +21,6 @@ class Longest_Path_Tree(Longest_Path):
                 if not self.visited[neighbor]:
                     self.visited[neighbor] = True
                     self.parent[neighbor] = node
-                    self.dist[neighbor] = self.calc_red(neighbor, node_colours)
+                    self.dist[neighbor] = self.calc_red(neighbor, node, node_colours)
                     self.stack.append(neighbor)
-    
-    def calc_red(self, node_index : int, node_colours : list[bool]) -> int:
-        parent_reds : int = self.dist[self.parent[node_index]]
-        if parent_reds < 0:
-            raise ValueError("Parent has under 0 red nodes in path!")
-        return parent_reds + int(node_colours[node_index])
 

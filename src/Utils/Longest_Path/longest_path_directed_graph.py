@@ -37,8 +37,7 @@ class Longest_Path_Directed_Graph(Longest_Path):
 			if (dist[u] != -1):
 				for i in edges[u]:
 
-					val = int(node_colours[i])
-					cur_dist = dist[u] + val
+					cur_dist = self.calc_red(i, u, node_colours)
 
 					if (dist[i] < cur_dist):
 						dist[i] = cur_dist
