@@ -169,4 +169,4 @@ test_results.txt
 .vs/
 
 # Output .txt files
-output.txt
+*output.txt
