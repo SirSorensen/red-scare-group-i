@@ -19,28 +19,28 @@ class Longest_Path_Directed_Graph(Longest_Path):
 				self.topological_sort_util(edges, i)
 
 	#  May yield better performance with Kahn's topological sort
-	def topological_sort_util(self, edges, n):
-		self.visited[n] = True
+	def topological_sort_util(self, edges, node_index):
+		self.visited[node_index] = True
 
-		for i in edges[n]:
-			if (not self.visited[i]):
-				self.topological_sort_util(edges,i)
+		for neighbor in edges[node_index]:
+			if not self.visited[neighbor]:
+				self.topological_sort_util(edges, neighbor)
+		
+		self.stack.append(node_index)
 
-		self.stack.append(n)
 
 	def longest_path(self, dist, edges, node_colours):
 
 		while (len(self.stack) > 0):
 
-			u = self.stack.pop()
+			v = self.stack.pop()
 
-			if (dist[u] != -1):
-				for i in edges[u]:
+			if (dist[v] != -1):
+				for u in edges[v]:
+					cur_dist = self.calc_red(u, v, node_colours)
 
-					cur_dist = self.calc_red(i, u, node_colours)
-
-					if (dist[i] < cur_dist):
-						dist[i] = cur_dist
+					if (dist[u] < cur_dist):
+						dist[u] = cur_dist
 		return dist
 
 
