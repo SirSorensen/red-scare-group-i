@@ -42,6 +42,12 @@ class Longest_Path_Directed_Graph(Longest_Path):
 					if (dist[u] < cur_dist):
 						dist[u] = cur_dist
 		return dist
+	
+	def calc_red(self, node_index : int, parent_index : int, node_colours : list[bool]) -> int:
+		parent_reds : int = self.dist[parent_index]
+		if parent_reds < 0:
+			raise ValueError("Parent has under 0 red nodes in path!")
+		return parent_reds + int(node_colours[node_index])
 
 
 
