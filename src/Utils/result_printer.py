@@ -54,7 +54,7 @@ def print_all_solutions(print_to_file = False):
 def put_into_latex_table(results : list[dict]) -> str:
     result =  r"\begin{longtable}{lrrrrrrr}" + "\n"
     result += r"  \toprule" + "\n"
-    result += r"  Instance name & $|V(G)|$ & $|E(G)|$ & Alternate & Few & Many & None & Some \\" + "\n"
+    result += r"  Instance name & $|V|$ & $|E|$ & Alternate & Few & Many & None & Some \\" + "\n"
     result += r"  \midrule" + "\n"
     result += r"  \endhead" + "\n"
     result += r"  \bottomrule" + "\n"
