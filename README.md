@@ -1,12 +1,10 @@
 # Introduction
-(*OBS!* see meeting notes and work delegation: path (`red-scare-group-i\doc\notes\metting notes\`))
 
 This repository is for the [Red Scare](https://learnit.itu.dk/mod/assign/view.php?id=208004) project for the course "Algorithm Design, MSc CS (Autumn 2024)" at the IT University in Copenhagen.
 
 ## How to run the program
 
-The program builds a graph from a file in the `data` folder 
-Now, in `src\main.py`, change the `file_name`-variable to the name of the data-input from the `data` folder in the project (i.e. "G-ex" for `data/G-ex.txt`).
+The program builds a graph for each file in the `data` folder 
 
 In your terminal, run one of the following commands:
 
@@ -21,9 +19,7 @@ python src/main.py
 
 Now you should have successfully run the program!
 
-If you want to output all solutions for all the files in the data folder, you can outcomment one of the last two lines in main.py.
-
-`print_all_solution` will print out all solutions for all the files in the data folder in an easily readable manner, such as:
+By default, the program outputs all solutions for all the files in the data folder, by calling `print_all_solutions` in `main.py`, in an easily readable manner, such as:
 ```
 G-ex.txt
 None: 3
