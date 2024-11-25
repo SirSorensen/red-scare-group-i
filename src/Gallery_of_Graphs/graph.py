@@ -13,7 +13,7 @@ from Utils.BFS import BreadthFirstPaths
 from Gallery_of_Graphs.graph_interface import IGraph
 from Utils.dijkstra import Dijkstra
 from Utils.alternateBFS import AlternateBreadthFirstPaths
-from Utils.Longest_Path.longest_path import Longest_Path
+from Utils.Longest_Path.longest_path_factory import longest_path_result
 
 class Graph(IGraph):
     def __init__(self, input_lines : list[str]):
@@ -69,7 +69,6 @@ class Graph(IGraph):
         edges_str = ""
         for i in range(self.node_amount):
             edges_str += f"\n   {i} -> {self.ids_to_nodes(self.edges[i])}"
-                
         
         s = f"This graph has {self.node_amount} nodes, {self.edge_amount} edges, and {self.red_amount} red nodes.\n"
         s += f"Node colours (True if red, False if black) :\n   {self.node_colours}\n"
@@ -96,8 +95,11 @@ class Graph(IGraph):
         Return `true' if there is a path from $s$ to $t$ that includes at least one vertex from $R$.
         Otherwise, return `false.'
     """
-    def solve_some(self) -> bool:
-        return self.solve_many() > 0
+    def solve_some(self):
+        result = self.solve_many()
+        if result == "?":
+            return "?"
+        return result > 0
     
     """
         Many:
@@ -106,13 +108,8 @@ class Graph(IGraph):
         Return $max{ r(p) : p ∈ P }$.
         If no path from $s$ to $t$ exists, return `-1'.
     """
-    def solve_many(self) -> int:
-        result = Longest_Path(self.node_amount, self.start, self.end,
-                              self.edges, self.node_colours, self.is_directed)
-        if result.dist[self.end] >= 0:
-            return result.dist[self.end]
-        else:
-            return -1
+    def solve_many(self):
+        return longest_path_result(self)
     
     """
         Few:
@@ -122,7 +119,7 @@ class Graph(IGraph):
         If no path from $s$ to $t$ exists, return `-1'.
     """
     def solve_few(self) -> int:
-        dijkstra = Dijkstra(self)        
+        dijkstra = Dijkstra(self)
         #print(dijkstra.path_to_str(self.end)) # For printing the path
         return dijkstra.get_dist(self.end)
     
@@ -145,7 +142,6 @@ class Graph(IGraph):
             node_id = len(self.node_ids)
             self.node_ids[node_str] = node_id
         return node_id
-        
     
     def ids_to_nodes(self, node_ids : list[int]) -> list[str]:
         rev_dict = {v:k for (k,v) in self.node_ids.items()}
