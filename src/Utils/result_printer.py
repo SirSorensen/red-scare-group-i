@@ -37,7 +37,7 @@ def print_solution(file_name : str):
     print(result)
     return result
 
-def print_all_solution(print_to_file = False):
+def print_all_solutions(print_to_file = False):
     files = get_all_files()
     files.sort()
 
