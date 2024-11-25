@@ -21,9 +21,9 @@ class ManyTests(UnitTests):
         self._act_assert('P3-0', 1)
         self._act_assert('P3-1', 0)
 
-    def test_cyclic(self):
-        self._act_assert('common-1-20', '?')
-        self._act_assert('common-1-50', '?')
+    def test_empty_graphs(self):
+        self._act_assert('common-1-20', -1)
+        self._act_assert('common-1-50', -1)
 
 
     ###     Helper functions     ###
