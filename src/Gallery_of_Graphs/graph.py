@@ -99,9 +99,11 @@ class Graph(IGraph):
     def solve_some(self):
         if self.is_directed:
             res = self.solve_many()
-            if res >= 1: return True
-            elif res < 1: return False
-            else: return "?!"
+            if isinstance(res, int):
+                if res >= 1: return True
+                else: return False
+            else:
+                return "?"
         else: return some_flow(self).some()
     """
         Many:
